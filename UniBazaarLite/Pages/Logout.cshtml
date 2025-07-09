@@ -1,0 +1,24 @@
+﻿@page
+@* Sayfanın bir Razor Sayfası olduğunu belirtir. *@
+
+@model UniBazaarLite.Pages.LogoutModel
+@* Sayfanın arka plan kodunu (LogoutModel) tanımlar. *@
+
+@{
+    ViewData["Title"] = "Çıkış Yap";
+}
+
+@* BURADAKİ KOD BLOKLARI Ceren Alyağız(05200000121) TARAFINDAN YAZILMIŞTIR *@
+
+<div class="text-center">
+    <h1>@ViewData["Title"]</h1>
+    <p>Oturumu sonlandırmak istediğinize emin misiniz?</p>
+    <hr />
+    <form method="post">
+        @* Çıkış işlemini tetikleyecek POST formunu başlatır. *@
+        <button type="submit" class="btn btn-danger">Evet, Çıkış Yap</button>
+        @* Çıkışı onaylayan buton. *@
+        <a class="btn btn-secondary" asp-page="/Index">İptal</a>
+        @* Çıkış işleminden vazgeçip ana sayfaya dönen link. *@
+    </form>
+</div>

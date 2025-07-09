@@ -1,0 +1,45 @@
+﻿@page
+@* Sayfanın bir Razor Sayfası olduğunu belirtir. *@
+
+@model IndexModel
+@* Sayfanın arka plan kodunu (IndexModel) tanımlar. *@
+
+@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+@* BURADAKİ KOD BLOKLARI Mustafa Kösem(05200000032) TARAFINDAN YAZILMIŞTIR *@
+
+<div class="text-center">
+    <h1 class="display-4">UniBazaar Lite'a Hoş Geldiniz</h1>
+    <p class="lead">Üniversite topluluğunuz için etkinlik ve ilan merkezi.</p>
+    <hr class="my-4">
+    <p>Kampüsteki en son etkinlikleri keşfedin veya aradığınız ikinci el eşyaları bulun.</p>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Etkinlik Panosu</h5>
+                @* Etkinlik bölümü başlığı. *@
+                <p class="card-text">Konserler, atölyeler, kariyer günleri ve daha fazlası... Kampüsteki hiçbir etkinliği kaçırmayın. Kendi etkinliğinizi oluşturun ve topluluğu bir araya getirin.</p>
+                @* Etkinlik bölümü açıklaması. *@
+                <a class="btn btn-primary btn-lg px-4 gap-3" asp-page="/Events/Index">Etkinlikleri Görüntüle</a>
+                @* Etkinlikler sayfasına yönlendiren bir buton. 'asp-page' ile Razor Sayfasına bağlanır. *@
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">İlanlar</h5>
+                @* İlan bölümü başlığı. *@
+                <p class="card-text">Ders kitaplarınızı satın, eski eşyalarınızı paraya çevirin veya ihtiyacınız olan ürünleri uygun fiyata bulun. Güvenli ve basit bir alım-satım platformu.</p>
+                @* İlan bölümü açıklaması. *@
+                <a class="btn btn-outline-secondary btn-lg px-4" asp-controller="Items" asp-action="Index">Satılık İlanları Görüntüle</a>
+                @* İlanlar sayfasına yönlendiren bir buton. 'asp-controller' ve 'asp-action' ile MVC Controller'a bağlanır. *@
+            </div>
+        </div>
+    </div>
+</div>

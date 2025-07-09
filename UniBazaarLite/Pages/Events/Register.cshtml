@@ -1,0 +1,53 @@
+﻿@* Bu direktif, bu dosyanın bir Razor Page olduğunu belirtir. *@
+@* {id:int} kısmı, URL'de /Events/Register/5 gibi bir tam sayı 'id' parametresi beklediğini tanımlar. *@
+@page "{id:int}"
+@* Bu sayfanın arka plan kodunda hangi PageModel sınıfının kullanılacağını tanımlar. *@
+@model UniBazaarLite.Pages.Events.RegisterModel
+@{
+    // Tarayıcı sekmesinde görünecek olan sayfa başlığını ayarlar.
+    ViewData["Title"] = "Etkinliğe Kaydol";
+}
+
+@* BURADAKİ KOD BLOKLARI Ceren Alyağız(05200000121) TARAFINDAN YAZILMIŞTIR *@
+
+@* Sayfanın başlığı olarak, PageModel'den gelen 'Event' nesnesinin 'Name' özelliğini gösterir. *@
+<h1>@Model.Event.Name</h1>
+<p class="text-muted">Aşağıdaki etkinliğe kaydolmak için lütfen bilgilerinizi girin.</p>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        @* Bu form, verileri sunucuya POST metoduyla gönderir. *@
+        <form method="post">
+            @* Modeldeki genel hataları göstermek için kullanılır. *@
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            @* Bu gizli input, form gönderildiğinde hangi etkinliğe kayıt yapıldığını bilmemizi sağlar. *@
+            <input type="hidden" asp-for="Registration.EventId" />
+
+            @* Her bir 'div', bir etiket, bir giriş alanı ve bir doğrulama mesajı içerir. *@
+            <div class="mb-3">
+                @* Bu etiket, 'Registration' modelindeki 'FullName' özelliğine bağlanır. *@
+                <label asp-for="Registration.FullName" class="form-label"></label>
+                <input asp-for="Registration.FullName" class="form-control" />
+                @* 'FullName' için bir doğrulama hatası olursa burada gösterilir. *@
+                <span asp-validation-for="Registration.FullName" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Registration.Email" class="form-label"></label>
+                <input asp-for="Registration.Email" class="form-control" />
+                <span asp-validation-for="Registration.Email" class="text-danger"></span>
+            </div>
+
+            @* 'submit' tipi, bu butona basıldığında formun gönderilmesini sağlar. *@
+            <button type="submit" class="btn btn-success">Kaydımı Tamamla</button>
+            <a class="btn btn-secondary" asp-page="./Index">İptal</a>
+        </form>
+    </div>
+</div>
+
+@* Bu bölüm, istemci tarafı form doğrulama script'lerini sayfaya dahil eder. *@
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,67 @@
+﻿@* Bu direktif, bu dosyanın bir Razor Page olduğunu belirtir. *@
+@* {id:int} kısmı, URL'de /Events/Edit/5 gibi bir tam sayı 'id' parametresi beklediğini tanımlar. *@
+@page "{id:int}"
+@* Bu sayfanın arka plan kodunda hangi PageModel sınıfının kullanılacağını tanımlar. *@
+@model UniBazaarLite.Pages.Events.EditModel
+@{
+    // Tarayıcı sekmesinde görünecek olan sayfa başlığını ayarlar.
+    ViewData["Title"] = "Etkinliği Düzenle";
+}
+
+@* BURADAKİ KOD BLOKLARI Ceren Alyağız(05200000121) TARAFINDAN YAZILMIŞTIR *@
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        @* Bu form, verileri sunucuya POST metoduyla gönderir. *@
+        <form method="post">
+            @* Modeldeki genel hataları göstermek için kullanılır. *@
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            @* Düzenlenen etkinliğin ID'sini form içinde gizli olarak tutar. *@
+            @* Bu, form gönderildiğinde hangi etkinliğin güncelleneceğini bilmemizi sağlar. *@
+            <input type="hidden" asp-for="Event.Id" />
+
+            @* Her bir form-group, bir etiket, bir giriş alanı ve bir doğrulama mesajından oluşur. *@
+            <div class="form-group mb-3">
+                @* Bu etiket, modeldeki 'Event.Name' özelliğine bağlanır. *@
+                <label asp-for="Event.Name" class="control-label"></label>
+                @* Bu input alanı, 'Event.Name' özelliğinin mevcut değerini gösterir. *@
+                <input asp-for="Event.Name" class="form-control" />
+                @* 'Event.Name' için bir doğrulama hatası olursa burada gösterilir. *@
+                <span asp-validation-for="Event.Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Event.Description" class="control-label"></label>
+                <textarea asp-for="Event.Description" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Event.Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Event.Date" class="control-label"></label>
+                <input asp-for="Event.Date" class="form-control" type="datetime-local" />
+                <span asp-validation-for="Event.Date" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Event.Location" class="control-label"></label>
+                <input asp-for="Event.Location" class="form-control" />
+                <span asp-validation-for="Event.Location" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                @* type="submit", bu butona tıklandığında formun gönderilmesini sağlar. *@
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+                @* Bu link, kullanıcıyı aynı klasördeki 'Index' sayfasına geri yönlendirir. *@
+                <a class="btn btn-secondary" asp-page="./Index">İptal</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@* Bu bölüm, istemci tarafı form doğrulama script'lerini sayfaya dahil eder. *@
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

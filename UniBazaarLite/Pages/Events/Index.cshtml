@@ -1,0 +1,50 @@
+﻿@* Bu direktif, bu dosyanın bir Razor Page olduğunu ve '/Events/Index' adresine karşılık geldiğini belirtir. *@
+@page
+@* Bu sayfanın arka plan kodunda hangi PageModel sınıfının kullanılacağını tanımlar. *@
+@model UniBazaarLite.Pages.Events.IndexModel
+@{
+    // Tarayıcı sekmesinde görünecek olan sayfa başlığını ayarlar.
+    ViewData["Title"] = "Etkinlikler";
+}
+
+@* BURADAKİ KOD BLOKLARI Ceren Alyağız(05200000121) TARAFINDAN YAZILMIŞTIR *@
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    @* Bu link, yeni bir etkinlik oluşturma sayfasına yönlendirir. *@
+    @* asp-page="./Create" ifadesi, aynı klasördeki 'Create.cshtml' sayfasına gitmesini sağlar. *@
+    <a class="btn btn-success" asp-page="./Create">Yeni Etkinlik Oluştur</a>
+</p>
+
+@* Verileri düzenli bir şekilde göstermek için bir HTML tablosu. *@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Etkinlik Adı</th>
+            <th>Açıklama</th>
+            <th>Tarih</th>
+            <th>Konum</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @* @foreach döngüsü, Model'den gelen 'Events' listesindeki her bir 'item' için bir tablo satırı (<tr>) oluşturur. *@
+        @foreach (var item in Model.Events) {
+        <tr>
+            @* Tablo hücreleri (<td>), her bir etkinliğin özelliklerini gösterir. *@
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+            @* 'g' formatı, tarihi ve saati kısa formatta (örn: 1.07.2025 15:55) gösterir. *@
+            <td>@item.Date.ToString("g")</td>
+            <td>@item.Location</td>
+            <td>
+                @* 'Düzenle' butonu, ilgili etkinliğin ID'sini alarak Edit sayfasına yönlendirir. *@
+                <a class="btn btn-sm btn-primary" asp-page="./Edit" asp-route-id="@item.Id">Düzenle</a> |
+                @* 'Kaydol' butonu, ilgili etkinliğin ID'sini alarak Register sayfasına yönlendirir. *@
+                <a class="btn btn-sm btn-info" asp-page="./Register" asp-route-id="@item.Id">Kaydol</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

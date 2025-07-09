@@ -1,0 +1,45 @@
+﻿@model UniBazaarLite.Models.Item
+@* Bu görünümün kullanacağı model tipini (UniBazaarLite.Models.Item) belirtir. *@
+
+@{
+    ViewData["Title"] = Model.Name; // Title değil, Name
+}
+
+@* BURADAKİ KOD BLOKLARI Mustafa Kösem(05200000032) TARAFINDAN YAZILMIŞTIR *@
+
+<h1>@Model.Name</h1>
+
+<div>
+    <h4>İlan Detayları</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Açıklama
+        </dt>
+        @* Açıklama alanının etiketi. *@
+        <dd class="col-sm-10">
+            @Model.Description
+        </dd>
+        @* Öğenin açıklamasını gösterir. *@
+        <dt class="col-sm-2">
+            Fiyat
+        </dt>
+        @* Fiyat alanının etiketi. *@
+        <dd class="col-sm-10">
+            @Model.Price.ToString("C")
+        </dd>
+        @* Öğenin fiyatını para birimi formatında gösterir. *@
+        <dt class="col-sm-2">
+            Satıcı
+        </dt>
+        @* Satıcı alanının etiketi. *@
+        <dd class="col-sm-10">
+            @Model.SellerEmail
+        </dd>
+        @* Öğenin satıcısının e-posta adresini gösterir. *@
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Listeye Geri Dön</a>
+    @* İlan listesi sayfasına geri dönmek için bir bağlantı. *@
+</div>

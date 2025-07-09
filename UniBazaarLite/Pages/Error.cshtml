@@ -1,0 +1,22 @@
+﻿@page "{code?}"
+@* Bu direktif, sayfanın bir Razor Sayfası olduğunu ve isteğe bağlı bir 'code' parametresi alabileceğini belirtir. *@
+
+@model ErrorModel
+@* Bu sayfanın arka plan kodu için kullanılacak modeli (ErrorModel) belirtir. *@
+
+@{
+    ViewData["Title"] = $"Hata {Model.ErrorStatusCode}";
+}
+@* ViewData kullanarak sayfanın başlığını dinamik olarak "Hata [Hata Kodu]" şeklinde ayarlar. *@
+
+@* BURADAKİ KOD BLOKLARI Mustafa Kösem(05200000032) TARAFINDAN YAZILMIŞTIR *@
+
+<h1 class="text-danger">Bir Hata Oluştu.</h1>
+
+<h2 class="text-danger">Hata Kodu: @Model.ErrorStatusCode</h2>
+@* Hata kodunu modelden alarak gösterir. *@
+
+<p class="mt-4">
+    <strong>@Model.ErrorMessage</strong>
+</p>
+@* Modelden gelen hata mesajını kalın yazıyla gösterir. *@

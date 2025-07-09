@@ -1,0 +1,65 @@
+﻿@* Bu direktif, bu dosyanın bir Razor Page olduğunu ve '/Classifieds/Create' adresine karşılık geldiğini belirtir. *@
+@page
+@* Bu sayfanın arka plan kodunda hangi PageModel sınıfının kullanılacağını tanımlar. *@
+@model UniBazaarLite.Pages.Classifieds.CreateModel
+@{
+    // Tarayıcı sekmesinde görünecek olan sayfa başlığını ayarlar.
+    ViewData["Title"] = "Yeni İlan Oluştur";
+}
+
+@* BURADAKİ KOD BLOKLARI Ceren Alyağız(05200000121) TARAFINDAN YAZILMIŞTIR *@
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        @* Bu form, verileri sunucuya POST metoduyla gönderir. *@
+        <form method="post">
+            @* Modeldeki genel (herhangi bir alana ait olmayan) hataları gösterir. *@
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            @* Her bir form-group, bir label ve bir input oluşur. *@
+            <div class="form-group mb-3">
+                @* asp-for Tag Helper'ı, bu etiketi modeldeki 'Item.Name' özelliğine bağlar. *@
+                <label asp-for="Item.Name" class="control-label"></label>
+                @* Bu input alanı, 'Item.Name' özelliğinin değerini alır ve gönderir. *@
+                <input asp-for="Item.Name" class="form-control" />
+                @* asp-validation-for, 'Item.Name' için bir doğrulama hatası olursa burada gösterir. *@
+                <span asp-validation-for="Item.Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Item.Description" class="control-label"></label>
+                @* 'textarea', çok satırlı metin girişi için kullanılır. *@
+                <textarea asp-for="Item.Description" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Item.Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Item.Price" class="control-label"></label>
+                @* type="number", sayısal giriş alanıdır. step="0.01", ondalıklı sayılara izin verir. *@
+                <input asp-for="Item.Price" class="form-control" type="number" step="0.01" />
+                <span asp-validation-for="Item.Price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Item.SellerEmail" class="control-label"></label>
+                @* Bu input alanı, giriş yapmış kullanıcının e-postasıyla otomatik dolar ve değiştirilemez. *@
+                <input asp-for="Item.SellerEmail" class="form-control" readonly />
+                <span asp-validation-for="Item.SellerEmail" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                @* type="submit", bu butona tıklandığında formun gönderilmesini sağlar. *@
+                <input type="submit" value="İlanı Yayınla" class="btn btn-primary" />
+                @* Bu link, kullanıcıyı ilanlar listesine geri yönlendirir. *@
+                <a class="btn btn-secondary" asp-controller="Items" asp-action="Index">İptal</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@* Bu bölüm, istemci tarafı form doğrulama script'lerini sayfaya dahil eder. *@
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

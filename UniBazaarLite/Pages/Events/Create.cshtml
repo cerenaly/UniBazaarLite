@@ -1,0 +1,63 @@
+﻿@* Bu direktif, bu dosyanın bir Razor Page olduğunu ve '/Events/Create' adresine karşılık geldiğini belirtir. *@
+@page
+@* Bu sayfanın arka plan kodunda hangi PageModel sınıfının kullanılacağını tanımlar. *@
+@model UniBazaarLite.Pages.Events.CreateModel
+@{
+    // Tarayıcı sekmesinde görünecek olan sayfa başlığını ayarlar.
+    ViewData["Title"] = "Yeni Etkinlik Oluştur";
+}
+
+@* BURADAKİ KOD BLOKLARI Ceren Alyağız(05200000121) TARAFINDAN YAZILMIŞTIR *@
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        @* Bu form, verileri sunucuya POST metoduyla gönderir. *@
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            @* Her bir form-group, label ve bir input oluşur. *@
+            <div class="form-group mb-3">
+                @* asp-for Tag Helper'ı, bu etiketi modeldeki 'Event.Name' özelliğine bağlar. *@
+                <label asp-for="Event.Name" class="control-label"></label>
+                @* Bu input alanı, 'Event.Name' özelliğinin değerini alır ve gönderir. *@
+                <input asp-for="Event.Name" class="form-control" />
+                @* asp-validation-for, 'Event.Name' için bir doğrulama hatası olursa burada gösterir. *@
+                <span asp-validation-for="Event.Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Event.Description" class="control-label"></label>
+                @* 'textarea', çok satırlı metin girişi için kullanılır. *@
+                <textarea asp-for="Event.Description" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Event.Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Event.Date" class="control-label"></label>
+                @* type="datetime-local", kullanıcıya bir tarih ve saat seçme arayüzü sunar. *@
+                <input asp-for="Event.Date" class="form-control" type="datetime-local" />
+                <span asp-validation-for="Event.Date" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Event.Location" class="control-label"></label>
+                <input asp-for="Event.Location" class="form-control" />
+                <span asp-validation-for="Event.Location" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                @* type="submit", bu butona tıklandığında formun gönderilmesini sağlar. *@
+                <input type="submit" value="Etkinliği Oluştur" class="btn btn-primary" />
+                @* Bu link, kullanıcıyı etkinlikler listesine geri yönlendirir. *@
+                <a class="btn btn-secondary" asp-page="/Events/Index">İptal</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@* Bu bölüm, istemci tarafı form doğrulama script'lerini sayfaya dahil eder. *@
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

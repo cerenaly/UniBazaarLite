@@ -1,0 +1,53 @@
+﻿@page
+@* Sayfanın bir Razor Sayfası olduğunu belirtir. *@
+
+@model UniBazaarLite.Pages.LoginModel
+@* Sayfanın arka plan kodunu (LoginModel) tanımlar. *@
+
+@{
+    ViewData["Title"] = "Giriş Yap";
+}
+
+@* BURADAKİ KOD BLOKLARI Ceren Alyağız(05200000121) TARAFINDAN YAZILMIŞTIR *@
+
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <h1 class="text-center">@ViewData["Title"]</h1>
+        @* Sayfanın ana başlığı. *@
+        <p class="text-center text-muted">Lütfen giriş yapmak için kayıtlı bir e-posta adresi kullanın.</p>
+        @* Kullanıcıya yönelik bilgilendirme. *@
+        <hr />
+        <form method="post">
+            @* Giriş formu başlatılır, POST metodu ile gönderilir. *@
+            @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+            {
+            <div class="alert alert-danger">@Model.ErrorMessage</div>
+            }
+            @* Modelde bir hata mesajı varsa, bu alanı kırmızı bir uyarı kutusunda gösterir. *@
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @* Model doğrulama hatalarını (özet olarak) gösterir. *@
+            <div class="form-floating mb-3">
+                <input asp-for="Email" class="form-control" placeholder="E-posta" />
+                @* E-posta girişi alanı. Modeldeki Email özelliğine bağlanır. *@
+                <label asp-for="Email"></label>
+                @* E-posta alanı etiketi. *@
+                <span asp-validation-for="Email" class="text-danger"></span>
+                @* E-posta alanı için doğrulama hata mesajını gösterir. *@
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Giriş Yap</button>
+                @* Giriş formunu gönderen buton. *@
+            </div>
+        </form>
+        <div class="mt-3">
+            <p class="small"><b>Kullanılabilir E-postalar:</b></p>
+            <ul class="list-group list-group-flush small">
+                <li class="list-group-item">admin@unibazaar.com (Rol: Admin)</li>
+                <li class="list-group-item">testuser1@example.com (Rol: User)</li>
+                <li class="list-group-item">testuser2@example.com (Rol: User)</li>
+                <li class="list-group-item">testuser3@example.com (Rol: User)</li>
+            </ul>
+            @* Simüle edilmiş kullanıcılar için e-posta listesi. *@
+        </div>
+    </div>
+</div>

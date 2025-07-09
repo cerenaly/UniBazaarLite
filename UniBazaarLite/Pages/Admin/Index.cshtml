@@ -1,0 +1,17 @@
+﻿@* Bu direktif, bu dosyanın bir Razor Page olduğunu belirtir. *@
+@page
+@* Bu sayfanın arka plan kodunda hangi PageModel sınıfının kullanılacağını tanımlar. *@
+@model UniBazaarLite.Pages.Admin.IndexModel
+@{
+    // Tarayıcı sekmesinde görünecek olan sayfa başlığını ayarlar.
+    ViewData["Title"] = "Admin Paneli";
+}
+
+@* BURADAKİ KOD BLOKLARI Siyam Acet(05200000080) TARAFINDAN YAZILMIŞTIR *@
+
+<div class="text-center">
+    <h1 class="display-4 text-danger">@ViewData["Title"]</h1>
+    <p>Bu sayfa sadece "Admin" rolündeki kullanıcılar tarafından görüntülenebilir.</p>
+    <hr />
+    <p>Buraya yöneticiye özel istatistikler, kullanıcı listeleri veya diğer yönetim araçları eklenebilir.</p>
+</div>

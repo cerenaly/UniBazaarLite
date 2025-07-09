@@ -1,0 +1,32 @@
+﻿@page
+@* Bu direktif, sayfanın bir Razor Sayfası olduğunu ve doğrudan bir URL üzerinden erişilebileceğini belirtir. *@
+
+@model UniBazaarLite.Pages.ContactModel
+@* Bu sayfanın arka plan kodu için kullanılacak modeli (UniBazaarLite.Pages.ContactModel) belirtir. *@
+
+@{
+    ViewData["Title"] = "İletişim";
+}
+@* ViewData kullanarak sayfanın başlığını "İletişim" olarak ayarlar. Bu başlık tarayıcı sekmesinde görünür. *@
+
+@* BURADAKİ KOD BLOKLARI Siyam Acet(05200000080) TARAFINDAN YAZILMIŞTIR *@
+
+<h1>@ViewData["Title"]</h1>
+@* Sayfanın ana başlığını ViewData'dan gelen "İletişim" değeriyle gösterir. *@
+
+<hr />
+<h3>Bizimle İletişime Geçin</h3>
+<p>
+    Proje ile ilgili herhangi bir soru, öneri veya geri bildirim için aşağıdaki e-posta adresinden bize ulaşabilirsiniz:
+</p>
+@* İletişim bilgilendirme paragrafı. *@
+
+<p>
+    <strong>E-posta:</strong> <a href="mailto:contact@unibazaar.com">contact@unibazaar.com</a>
+</p>
+@* İletişim e-posta adresi ve mailto bağlantısı. *@
+
+<p>
+    <strong>Adres:</strong> Üniversite Kampüsü, Teknoloji Binası, Zemin Kat
+</p>
+@* İletişim adres bilgisi. *@

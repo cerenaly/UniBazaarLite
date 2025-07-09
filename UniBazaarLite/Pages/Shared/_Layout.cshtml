@@ -1,0 +1,102 @@
+﻿@* IConfiguration servisini bu dosyada kullanılabilir hale getirir. Bu, appsettings.json'ı okumamızı sağlar. *@
+@inject IConfiguration Configuration
+
+@* BURADAKİ KOD BLOKLARI Ceren Alyağız(05200000121) ve Siyam Acet(05200000080) TARAFINDAN YAZILMIŞTIR *@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @* Sayfa başlığını, dinamik olarak o sayfanın başlığı ve appsettings.json'daki site adıyla oluşturur. *@
+    <title>@ViewData["Title"] - @Configuration["SiteName"]</title>
+    @* Proje içindeki ve dışarıdaki (CDN) CSS stil dosyalarını sayfaya dahil eder. *@
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    @* Sitenin en üstünde yer alan başlık bölümü. *@
+    <header>
+        @* Bootstrap ile oluşturulmuş, sitenin ana navigasyon menüsü. *@
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                @* Site logosu, tıklandığında ana sayfaya yönlendirir. *@
+                <a class="navbar-brand" asp-area="" asp-page="/Index">@Configuration["SiteName"]</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                @* Navigasyon linklerini ve diğer elementleri gruplayan bölüm. *@
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    @* Ana navigasyon linklerinin listesi. *@
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Ana Sayfa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Events/Index">Etkinlikler</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Items" asp-action="Index">İlanlar</a>
+                        </li>
+                        @* @if bloğu, sadece giriş yapmış ve rolü "Admin" olan kullanıcılara bu linki gösterir. *@
+                        @if (User.IsInRole("Admin"))
+                        {
+                        <li class="nav-item">
+                            <a class="nav-link text-danger" href="/Admin/Index">Admin Paneli</a>
+                        </li>
+                        }
+                    </ul>
+                    @* Navigasyon çubuğunun sağ tarafında yer alacak olan login/logout bölümü. *@
+                    <div class="navbar-nav">
+                        @* Eğer kullanıcı giriş yapmışsa *@
+                        @if (User.Identity != null && User.Identity.IsAuthenticated)
+                        {
+                        @* Kullanıcıya bir hoş geldin mesajı göster. *@
+                        <span class="navbar-text me-3">Hoş geldin, @User.Identity.Name!</span>
+                        @* çıkış yapma butonu göster *@
+                        <form asp-page="/Logout" method="post" class="form-inline my-auto">
+                            <button type="submit" class="btn btn-outline-danger btn-sm">Çıkış Yap</button>
+                        </form>
+                        }
+                        else
+                        {
+                        @* kullanıcı giriş yapmamışsa, bir giriş yapma butonu göster. *@
+                        <a class="btn btn-outline-primary" asp-page="/Login">Giriş Yap</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        @* 'main' etiketi, sayfanın ana içeriğinin bulunduğu yerdir. *@
+        <main role="main" class="pb-3">
+            @* Eğer TempData içinde "SuccessMessage" adında bir veri varsa, bu başarı mesajını gösterir. *@
+            @if (TempData["SuccessMessage"] != null)
+            {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @TempData["SuccessMessage"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            }
+            @* @RenderBody(), bu şablonu kullanan her bir sayfanın kendi özel içeriğinin render edileceği yerdir. *@
+            @RenderBody()
+        </main>
+    </div>
+
+    @* Sitenin en altında yer alan altbilgi bölümü. *@
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; @DateTime.Now.Year - @Configuration["SiteName"] - <a asp-page="/Contact">İletişim</a>
+        </div>
+    </footer>
+
+    @* Site genelinde kullanılacak olan JavaScript kütüphaneleri ve dosyaları. *@
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    @* @RenderSectionAsync sayfalara özel script'lerin bu noktada render edilmesini sağlar. *@
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

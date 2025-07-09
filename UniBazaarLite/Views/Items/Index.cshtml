@@ -1,0 +1,53 @@
+﻿@model IEnumerable<UniBazaarLite.Models.Item>
+    @* Bu görünümün, UniBazaarLite.Models.Item tipinde bir liste beklediğini belirtir. *@
+
+    @{
+    ViewData["Title"] = "Satılık İlanlar";
+    }
+    @* Sayfanın başlığını "Satılık İlanlar" olarak ayarlar. *@
+
+    @* BURADAKİ KOD BLOKLARI Mustafa Kösem(05200000032) TARAFINDAN YAZILMIŞTIR *@
+
+    <h1>@ViewData["Title"]</h1>
+    @* Sayfanın ana başlığını gösterir. *@
+
+    <p>
+        <a class="btn btn-success" asp-page="/Classifieds/Create">Yeni İlan Ekle</a>
+    </p>
+    @* Yeni bir ilan eklemek için bir buton. Razor Sayfası olan '/Classifieds/Create' adresine yönlendirir. *@
+
+    <table class="table table-hover">
+        @* İlanları listeleyen bir HTML tablosu başlatır. *@
+        <thead>
+            <tr>
+                <th>İlan Adı</th>
+                <th>Fiyat</th>
+                <th>Satıcı</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @* Tablo içeriği bölümü. *@
+            @foreach (var item in Model) {
+            @* Modeldeki her bir ilan (Item) için döngü başlatır. *@
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                @* İlanın adını gösterir. *@
+                <td>
+                    @item.Price.ToString("C")
+                </td>
+                @* İlanın fiyatını para birimi formatında gösterir. *@
+                <td>
+                    @Html.DisplayFor(modelItem => item.SellerEmail)
+                </td>
+                @* İlanın satıcısının e-posta adresini gösterir. *@
+                <td>
+                    <a class="btn btn-sm btn-info" asp-controller="Items" asp-action="Details" asp-route-id="@item.Id">Detaylar</a>
+                </td>
+                @* İlanın detay sayfasına yönlendiren bir buton. MVC Controller'a (ItemsController) bağlanır ve ilanın ID'sini rota parametresi olarak gönderir. *@
+            </tr>
+        }
+        </tbody>
+    </table>
