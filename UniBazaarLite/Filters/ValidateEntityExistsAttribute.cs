@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-// BURADAKİ KOD BLOKLARI Mustafa Kösem(05200000032) TARAFINDAN YAZILMIŞTIR
-
 namespace UniBazaarLite.Filters
 {
     // Bu sınıf, [ValidateEntityExists<T>] şeklinde kullanılacak olan attribute'tur.
