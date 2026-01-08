@@ -1,24 +1,23 @@
-using Microsoft.AspNetCore.Mvc.RazorPages; // Razor Sayfaları için temel kütüphaneyi içe aktarır.
-using Microsoft.Extensions.Logging; // Loglama işlevselliği için gerekli kütüphaneyi içe aktarır.
+using Microsoft.AspNetCore.Mvc.RazorPages; // Razor SayfalarÄ± iÃ§in temel kÃ¼tÃ¼phaneyi iÃ§e aktarÄ±r.
+using Microsoft.Extensions.Logging; // Loglama iÅŸlevselliÄŸi iÃ§in gerekli kÃ¼tÃ¼phaneyi iÃ§e aktarÄ±r.
 
-// BURADAKİ KOD BLOKLARI Mustafa Kösem(05200000032) TARAFINDAN YAZILMIŞTIR
-
+ 
 namespace UniBazaarLite.Pages
 {
-    // Ana sayfa (Index) için arka plan kod modelini tanımlar.
+    // Ana sayfa (Index) iÃ§in arka plan kod modelini tanÄ±mlar.
     public class IndexModel : PageModel
     {
-        // Loglama için ILogger servisini tutar
+        // Loglama iÃ§in ILogger servisini tutar
         private readonly ILogger<IndexModel> _logger;
 
-        // IndexModel oluşturulurken ILogger servisini Dependency Injection ile alır.
+        // IndexModel oluÅŸturulurken ILogger servisini Dependency Injection ile alÄ±r.
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
         }
 
-        // Sayfaya GET isteği yapıldığında (sayfa yüklendiğinde) çalışan metot.
-        // Bu sayfada özel bir veri işlemi yapılmadığı için şu an boş bırakılmıştır.
+        // Sayfaya GET isteÄŸi yapÄ±ldÄ±ÄŸÄ±nda (sayfa yÃ¼klendiÄŸinde) Ã§alÄ±ÅŸan metot.
+        // Bu sayfada Ã¶zel bir veri iÅŸlemi yapÄ±lmadÄ±ÄŸÄ± iÃ§in ÅŸu an boÅŸ bÄ±rakÄ±lmÄ±ÅŸtÄ±r.
         public void OnGet()
         {
 
