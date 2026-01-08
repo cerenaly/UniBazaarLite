@@ -2,7 +2,6 @@
 using UniBazaarLite.Data; // Veri katmanı arayüzleri ve uygulamaları için.
 using UniBazaarLite.Filters; // Özel filtreler için.
 
-// BURADAKİ KOD BLOKLARI SİYAM ACET(05200000080) VE MUSTAFA KÖSEM(05200000032) TARAFINDAN YAZILMIŞTIR
 
 var builder = WebApplication.CreateBuilder(args); // Web uygulamasını oluşturmak için bir builder başlatır.
 
