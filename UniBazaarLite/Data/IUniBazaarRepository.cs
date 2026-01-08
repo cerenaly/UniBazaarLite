@@ -1,6 +1,5 @@
 ﻿using UniBazaarLite.Models;
 
-// BURADAKİ KOD BLOKLARI SİYAM ACET(05200000080) TARAFINDAN YAZILMIŞTIR
 
 namespace UniBazaarLite.Data
 {
