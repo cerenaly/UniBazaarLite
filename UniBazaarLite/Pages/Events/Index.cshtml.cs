@@ -1,32 +1,31 @@
-// Gerekli ASP.NET Core ve proje kütüphanelerini ekliyoruz.
+// Gerekli ASP.NET Core ve proje kÃ¼tÃ¼phanelerini ekliyoruz.
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using UniBazaarLite.Data;
 using UniBazaarLite.Models;
 
-// BURADAKİ KOD BLOKLARI Ceren Alyağız(05200000121) TARAFINDAN YAZILMIŞTIR
 
 namespace UniBazaarLite.Pages.Events
 {
-    // Etkinlik listeleme sayfasının arka plan kodunu içeren sınıf.
+    // Etkinlik listeleme sayfasÄ±nÄ±n arka plan kodunu iÃ§eren sÄ±nÄ±f.
     public class IndexModel : PageModel
     {
-        // Veri deposuna erişim için 'readonly' bir alan.
+        // Veri deposuna eriÅŸim iÃ§in 'readonly' bir alan.
         private readonly IUniBazaarRepository _repository;
-        // Sayfada gösterilecek olan etkinlik listesi.
-        // 'get' public, 'private set' ise bu listenin sadece bu sınıf içinden atanabileceğini belirtir.
+        // Sayfada gÃ¶sterilecek olan etkinlik listesi.
+        // 'get' public, 'private set' ise bu listenin sadece bu sÄ±nÄ±f iÃ§inden atanabileceÄŸini belirtir.
         public List<Event> Events { get; private set; } = new List<Event>();
 
-        // Sınıf oluşturulurken repository enjekte eder.
+        // SÄ±nÄ±f oluÅŸturulurken repository enjekte eder.
         public IndexModel(IUniBazaarRepository repository)
         {
             _repository = repository;
         }
 
-        // Sayfaya bir GET isteği yapıldığında (sayfa ilk yüklendiğinde) çalışır.
+        // Sayfaya bir GET isteÄŸi yapÄ±ldÄ±ÄŸÄ±nda (sayfa ilk yÃ¼klendiÄŸinde) Ã§alÄ±ÅŸÄ±r.
         public void OnGet()
         {
-            // Repositorydeki tüm etkinlikleri çeker ve 'Events' listesine atar.
-            // Bu liste, .cshtml dosyasında kullanılacaktır.
+            // Repositorydeki tÃ¼m etkinlikleri Ã§eker ve 'Events' listesine atar.
+            // Bu liste, .cshtml dosyasÄ±nda kullanÄ±lacaktÄ±r.
             Events = _repository.GetAllEvents();
         }
     }
