@@ -5,8 +5,6 @@ using UniBazaarLite.Data;
 using UniBazaarLite.Models;
 using UniBazaarLite.Filters;
 
-// BURADAKİ KOD BLOKLARI Mustafa Kösem(05200000032) TARAFINDAN YAZILMIŞTIR
-
 namespace UniBazaarLite.Controllers
 {
     // ItemsController, ilanlarla (Items) ilgili web isteklerini yönetmekten sorumlu sınıftır.
