@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Authorization; // Yetkilendirme öznitelikleri (Autho
 using Microsoft.AspNetCore.Mvc; // Controller ve PageModel gibi temel MVC/Razor Sayfaları bileşenleri için.
 using Microsoft.AspNetCore.Mvc.RazorPages; // Razor Sayfaları için temel kütüphane.
 
-// BURADAKİ KOD BLOKLARI Ceren Alyağız(05200000121) TARAFINDAN YAZILMIŞTIR
-
 namespace UniBazaarLite.Pages
 {
     [Authorize] // Bu sayfaya sadece giriş yapmış kullanıcılar erişebilir.
