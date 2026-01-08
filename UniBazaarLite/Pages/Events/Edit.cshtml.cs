@@ -1,4 +1,4 @@
-// Gerekli ASP.NET Core ve proje kütüphanelerini ekliyoruz.
+// Gerekli ASP.NET Core ve proje kÃ¼tÃ¼phanelerini ekliyoruz.
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -6,57 +6,56 @@ using UniBazaarLite.Data;
 using UniBazaarLite.Filters;
 using UniBazaarLite.Models;
 
-// BURADAKİ KOD BLOKLARI Ceren Alyağız(05200000121) TARAFINDAN YAZILMIŞTIR
 
 namespace UniBazaarLite.Pages.Events
 {
-    // [Authorize], bu sayfanın sadece giriş yapmış kullanıcılar tarafından erişilebilir olmasını sağlar.
+    // [Authorize], bu sayfanÄ±n sadece giriÅŸ yapmÄ±ÅŸ kullanÄ±cÄ±lar tarafÄ±ndan eriÅŸilebilir olmasÄ±nÄ± saÄŸlar.
     [Authorize]
-    // [ValidateEntityExists<Event>], OnGet metodu çalışmadan önce, verilen 'id' ile bir
-    // etkinliğin olup olmadığını kontrol eden özel filtremizdir.
+    // [ValidateEntityExists<Event>], OnGet metodu Ã§alÄ±ÅŸmadan Ã¶nce, verilen 'id' ile bir
+    // etkinliÄŸin olup olmadÄ±ÄŸÄ±nÄ± kontrol eden Ã¶zel filtremizdir.
     [ValidateEntityExists<Event>]
     public class EditModel : PageModel
     {
-        // Repositroy erişim için 'readonly' bir alan.
+        // Repositroy eriÅŸim iÃ§in 'readonly' bir alan.
         private readonly IUniBazaarRepository _repository;
 
         // [BindProperty], bu 'Event' nesnesinin formdan gelen verilerle
-        // otomatik olarak doldurulacağını belirtir.
+        // otomatik olarak doldurulacaÄŸÄ±nÄ± belirtir.
         [BindProperty]
         public Event Event { get; set; } = new();
 
-        // Sınıf oluşturulurken repository enjekte eder.
+        // SÄ±nÄ±f oluÅŸturulurken repository enjekte eder.
         public EditModel(IUniBazaarRepository repository)
         {
             _repository = repository;
         }
 
-        // Sayfaya bir GET isteği yapıldığında (örn: /Events/Edit/5) çalışır.
+        // Sayfaya bir GET isteÄŸi yapÄ±ldÄ±ÄŸÄ±nda (Ã¶rn: /Events/Edit/5) Ã§alÄ±ÅŸÄ±r.
         public IActionResult OnGet(int id)
         {
-            // Filtremiz kontrolü yaptığı için, buraya ulaştığımızda etkinliğin var olduğunu biliriz.
-            // Repositoryden ilgili etkinliği bulup 'Event' modelimize atarız.
+            // Filtremiz kontrolÃ¼ yaptÄ±ÄŸÄ± iÃ§in, buraya ulaÅŸtÄ±ÄŸÄ±mÄ±zda etkinliÄŸin var olduÄŸunu biliriz.
+            // Repositoryden ilgili etkinliÄŸi bulup 'Event' modelimize atarÄ±z.
             var eventFromDb = _repository.GetEventById(id);
             Event = eventFromDb!;
             return Page();
         }
 
-        // Forma bir POST isteği yapıldığında (form gönderildiğinde) çalışır.
+        // Forma bir POST isteÄŸi yapÄ±ldÄ±ÄŸÄ±nda (form gÃ¶nderildiÄŸinde) Ã§alÄ±ÅŸÄ±r.
         public IActionResult OnPost()
         {
-            // Modelin doğrulama kurallarının geçerli olup olmadığını kontrol eder.
+            // Modelin doÄŸrulama kurallarÄ±nÄ±n geÃ§erli olup olmadÄ±ÄŸÄ±nÄ± kontrol eder.
             if (!ModelState.IsValid)
             {
-                // Geçerli değilse, aynı sayfayı hatalarla birlikte tekrar gösterir.
+                // GeÃ§erli deÄŸilse, aynÄ± sayfayÄ± hatalarla birlikte tekrar gÃ¶sterir.
                 return Page();
             }
 
-            // Formdan gelen 'Event' modelini, repositorydeki güncelleme metoduna gönderir.
+            // Formdan gelen 'Event' modelini, repositorydeki gÃ¼ncelleme metoduna gÃ¶nderir.
             _repository.UpdateEvent(Event);
 
-            // Kullanıcıya bir sonraki sayfada gösterilmek üzere bir başarı mesajı ayarlar.
-            TempData["SuccessMessage"] = "Etkinlik başarıyla güncellendi!";
-            // Kullanıcıyı, aynı klasördeki 'Index' sayfasına yönlendirir.
+            // KullanÄ±cÄ±ya bir sonraki sayfada gÃ¶sterilmek Ã¼zere bir baÅŸarÄ± mesajÄ± ayarlar.
+            TempData["SuccessMessage"] = "Etkinlik baÅŸarÄ±yla gÃ¼ncellendi!";
+            // KullanÄ±cÄ±yÄ±, aynÄ± klasÃ¶rdeki 'Index' sayfasÄ±na yÃ¶nlendirir.
             return RedirectToPage("./Index");
         }
     }
