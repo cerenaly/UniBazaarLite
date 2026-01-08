@@ -2,8 +2,6 @@
 using System.Diagnostics; // Performans ölçümü için Stopwatch kullanır.
 using Microsoft.Extensions.Logging; // Loglama işlevselliği için gerekli.
 
-// BURADAKİ KOD BLOKLARI Mustafa Kösem(05200000032) TARAFINDAN YAZILMIŞTIR
-
 namespace UniBazaarLite.Filters
 {
     // Hem MVC Action'larını hem de Razor Page'lerini izleyen bir filtre sınıfı.
