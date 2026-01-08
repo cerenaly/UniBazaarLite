@@ -1,4 +1,4 @@
-// Gerekli ASP.NET Core ve proje kütüphanelerini ekliyoruz.
+// Gerekli ASP.NET Core ve proje kÃ¼tÃ¼phanelerini ekliyoruz.
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
@@ -7,37 +7,36 @@ using UniBazaarLite.Data;
 using UniBazaarLite.Filters;
 using UniBazaarLite.Models;
 
-// BURADAKİ KOD BLOKLARI Ceren Alyağız(05200000121) TARAFINDAN YAZILMIŞTIR
 
 namespace UniBazaarLite.Pages.Events
 {
-    // Bu sınıf, sadece kayıt formundan gelen verileri tutmak için kullanılır. "Binding Model" veya "Input Model" denir.
+    // Bu sÄ±nÄ±f, sadece kayÄ±t formundan gelen verileri tutmak iÃ§in kullanÄ±lÄ±r. "Binding Model" veya "Input Model" denir.
     public class RegistrationModel
     {
         public int EventId { get; set; }
 
-        [Required(ErrorMessage = "Ad Soyad alanı zorunludur.")]
-        [Display(Name = "Adınız Soyadınız")]
+        [Required(ErrorMessage = "Ad Soyad alanÄ± zorunludur.")]
+        [Display(Name = "AdÄ±nÄ±z SoyadÄ±nÄ±z")]
         public string FullName { get; set; } = "";
 
-        [Required(ErrorMessage = "E-posta alanı zorunludur.")]
+        [Required(ErrorMessage = "E-posta alanÄ± zorunludur.")]
         [EmailAddress]
         [Display(Name = "E-posta Adresiniz")]
         public string Email { get; set; } = "";
     }
 
-    // [ValidateEntityExists<Event>], sayfa yüklenmeden önce verilen 'id' ile
-    // bir etkinliğin olup olmadığını kontrol eden özel filtremiz
+    // [ValidateEntityExists<Event>], sayfa yÃ¼klenmeden Ã¶nce verilen 'id' ile
+    // bir etkinliÄŸin olup olmadÄ±ÄŸÄ±nÄ± kontrol eden Ã¶zel filtremiz
     [ValidateEntityExists<Event>]
     public class RegisterModel : PageModel
     {
         private readonly IUniBazaarRepository _repository;
 
-        // Sayfada gösterilecek olan etkinlik bilgisini tutar.
+        // Sayfada gÃ¶sterilecek olan etkinlik bilgisini tutar.
         public Event Event { get; set; } = new();
 
         // [BindProperty], bu nesnenin formdan gelen verilerle
-        // otomatik olarak doldurulacağını belirtir.
+        // otomatik olarak doldurulacaÄŸÄ±nÄ± belirtir.
         [BindProperty]
         public RegistrationModel Registration { get; set; } = new();
 
@@ -47,18 +46,18 @@ namespace UniBazaarLite.Pages.Events
             _repository = repository;
         }
 
-        // Sayfaya bir GET isteği yapıldığında (sayfa ilk yüklendiğinde) çalışır.
+        // Sayfaya bir GET isteÄŸi yapÄ±ldÄ±ÄŸÄ±nda (sayfa ilk yÃ¼klendiÄŸinde) Ã§alÄ±ÅŸÄ±r.
         public IActionResult OnGet(int id)
         {
-            // Repositoryden ilgili etkinliği bulur. (Filtre sayesinde var olduğundan eminiz).
+            // Repositoryden ilgili etkinliÄŸi bulur. (Filtre sayesinde var olduÄŸundan eminiz).
             var eventToRegister = _repository.GetEventById(id);
             if (eventToRegister == null) return NotFound();
 
-            // Bulunan etkinliği ve ID'sini sayfanın modellerine atar.
+            // Bulunan etkinliÄŸi ve ID'sini sayfanÄ±n modellerine atar.
             Event = eventToRegister;
             Registration.EventId = id;
 
-            // Eğer kullanıcı giriş yapmışsa, formdaki alanları otomatik doldurur.
+            // EÄŸer kullanÄ±cÄ± giriÅŸ yapmÄ±ÅŸsa, formdaki alanlarÄ± otomatik doldurur.
             if (User.Identity != null && User.Identity.IsAuthenticated)
             {
                 Registration.FullName = User.FindFirstValue(ClaimTypes.Name) ?? "";
@@ -68,14 +67,14 @@ namespace UniBazaarLite.Pages.Events
             return Page();
         }
 
-        // Forma bir POST isteği yapıldığında (form gönderildiğinde) çalışır.
+        // Forma bir POST isteÄŸi yapÄ±ldÄ±ÄŸÄ±nda (form gÃ¶nderildiÄŸinde) Ã§alÄ±ÅŸÄ±r.
         public IActionResult OnPost()
         {
-            // Formun doğrulama kurallarının geçerli olup olmadığını kontrol eder.
+            // Formun doÄŸrulama kurallarÄ±nÄ±n geÃ§erli olup olmadÄ±ÄŸÄ±nÄ± kontrol eder.
             if (!ModelState.IsValid)
             {
-                // Hata varsa, sayfanın başlığında vb. gösterilen etkinlik bilgisini
-                // yeniden yükleyip sayfayı tekrar göstermek gerekir.
+                // Hata varsa, sayfanÄ±n baÅŸlÄ±ÄŸÄ±nda vb. gÃ¶sterilen etkinlik bilgisini
+                // yeniden yÃ¼kleyip sayfayÄ± tekrar gÃ¶stermek gerekir.
                 var eventToRegister = _repository.GetEventById(Registration.EventId);
                 if (eventToRegister == null) return NotFound();
                 Event = eventToRegister;
@@ -83,13 +82,13 @@ namespace UniBazaarLite.Pages.Events
                 return Page();
             }
 
-            // Kayıt yapılacak etkinliği tekrar buluruz.
+            // KayÄ±t yapÄ±lacak etkinliÄŸi tekrar buluruz.
             var registeredEvent = _repository.GetEventById(Registration.EventId);
             if (registeredEvent == null) return NotFound();
 
-            // Kullanıcıya bir sonraki sayfada gösterilecek bir başarı mesajı ayarlarız.
-            TempData["SuccessMessage"] = $"Sayın {Registration.FullName}, '{registeredEvent.Name}' etkinliğine kaydınız başarıyla alındı!";
-            // Kullanıcıyı etkinlikler listesine geri yönlendiririz.
+            // KullanÄ±cÄ±ya bir sonraki sayfada gÃ¶sterilecek bir baÅŸarÄ± mesajÄ± ayarlarÄ±z.
+            TempData["SuccessMessage"] = $"SayÄ±n {Registration.FullName}, '{registeredEvent.Name}' etkinliÄŸine kaydÄ±nÄ±z baÅŸarÄ±yla alÄ±ndÄ±!";
+            // KullanÄ±cÄ±yÄ± etkinlikler listesine geri yÃ¶nlendiririz.
             return RedirectToPage("./Index");
         }
     }
