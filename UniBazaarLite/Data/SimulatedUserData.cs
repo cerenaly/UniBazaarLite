@@ -1,5 +1,4 @@
 ﻿namespace UniBazaarLite.Data
-// BURADAKİ KOD BLOKLARI SİYAM ACET(05200000080) TARAFINDAN YAZILMIŞTIR
 {
     // Kullanıcının adını, e-postasını ve rolünü bir arada tutan record type.
     public record UserDto(string Name, string Email, string Role);
