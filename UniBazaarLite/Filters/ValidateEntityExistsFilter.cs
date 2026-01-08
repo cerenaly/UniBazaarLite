@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using UniBazaarLite.Data;
 
-// BURADAKİ KOD BLOKLARI Mustafa Kösem(05200000032) TARAFINDAN YAZILMIŞTIR
-
 namespace UniBazaarLite.Filters
 {
     // Bu sınıf, asıl filtreleme mantığını içerir ve IActionFilter arayüzünü uygular.
