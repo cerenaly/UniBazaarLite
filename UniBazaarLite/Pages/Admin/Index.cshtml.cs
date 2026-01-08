@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-// BURADAKİ KOD BLOKLARI Siyam Acet(05200000080) TARAFINDAN YAZILMIŞTIR
 
 namespace UniBazaarLite.Pages.Admin
 {
