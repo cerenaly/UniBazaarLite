@@ -5,8 +5,6 @@ using System.ComponentModel.DataAnnotations; // Model doğrulama öznitelikleri 
 using System.Security.Claims; // Kullanıcı kimlik bilgilerini yönetmek için.
 using UniBazaarLite.Data; // Projenin veri katmanına erişmek için.
 
-// BURADAKİ KOD BLOKLARI Ceren Alyağız(05200000121) TARAFINDAN YAZILMIŞTIR
-
 namespace UniBazaarLite.Pages
 {
     // Giriş sayfasının arka plan kod modelini tanımlar.
