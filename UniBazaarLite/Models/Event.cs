@@ -1,7 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-// BURADAKİ KOD BLOKLARI SİYAM ACET(05200000080) TARAFINDAN YAZILMIŞTIR
-
 namespace UniBazaarLite.Models
 {
     // Bir "Etkinlik" nesnesinin yapısını tanımlayan model sınıfı.
