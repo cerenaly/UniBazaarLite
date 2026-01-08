@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages; // Razor Sayfaları için temel kütüphaneyi içe aktarır.
 
-// BURADAKİ KOD BLOKLARI Siyam Acet(05200000080) TARAFINDAN YAZILMIŞTIR
 
 namespace UniBazaarLite.Pages
 {
