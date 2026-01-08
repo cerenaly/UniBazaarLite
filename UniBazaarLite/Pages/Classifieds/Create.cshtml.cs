@@ -6,8 +6,6 @@ using System.Security.Claims;
 using UniBazaarLite.Data;
 using UniBazaarLite.Models;
 
-// BURADAKİ KOD BLOKLARI Ceren Alyağız(05200000121) TARAFINDAN YAZILMIŞTIR
-
 namespace UniBazaarLite.Pages.Classifieds
 {
     // [Authorize] özniteliği, bu sayfanın sadece giriş yapmış kullanıcılar
