@@ -1,8 +1,6 @@
 ﻿// Form doğrulama ve gösterim için gerekli olan kütüphaneyi ekliyoruz.
 using System.ComponentModel.DataAnnotations;
 
-// BURADAKİ KOD BLOKLARI SİYAM ACET(05200000080) TARAFINDAN YAZILMIŞTIR
-
 namespace UniBazaarLite.Models
 {
     // Bir "İlan" nesnesinin yapısını ve kurallarını tanımlayan model sınıfı.
