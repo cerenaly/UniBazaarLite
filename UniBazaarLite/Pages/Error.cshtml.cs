@@ -1,42 +1,40 @@
-using Microsoft.AspNetCore.Mvc; // MVC'ye özgü nitelikleri kullanmak için.
-using Microsoft.AspNetCore.Mvc.RazorPages; // Razor Sayfaları için temel kütüphaneyi içe aktarır.
+using Microsoft.AspNetCore.Mvc; // MVC'ye Ã¶zgÃ¼ nitelikleri kullanmak iÃ§in.
+using Microsoft.AspNetCore.Mvc.RazorPages; // Razor SayfalarÄ± iÃ§in temel kÃ¼tÃ¼phaneyi iÃ§e aktarÄ±r.
 using System.Diagnostics;
-
-// BURADAKİ KOD BLOKLARI Mustafa Kösem(05200000032) TARAFINDAN YAZILMIŞTIR
 
 namespace UniBazaarLite.Pages
 {
-    // Yanıtın önbelleğe alınmamasını sağlar, her zaman yeni bir yanıt gönderilir.
+    // YanÄ±tÄ±n Ã¶nbelleÄŸe alÄ±nmamasÄ±nÄ± saÄŸlar, her zaman yeni bir yanÄ±t gÃ¶nderilir.
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     [IgnoreAntiforgeryToken]
     public class ErrorModel : PageModel
     {
-        // İstek için benzersiz kimlik.
+        // Ä°stek iÃ§in benzersiz kimlik.
         public string? RequestId { get; set; }
-        // RequestId boş değilse true döner, sayfa üzerinde gösterilip gösterilmeyeceğini kontrol eder.
+        // RequestId boÅŸ deÄŸilse true dÃ¶ner, sayfa Ã¼zerinde gÃ¶sterilip gÃ¶sterilmeyeceÄŸini kontrol eder.
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 
         // Hata durum kodu
         public string? ErrorStatusCode { get; set; }
-        // Hata mesajı.
+        // Hata mesajÄ±.
         public string? ErrorMessage { get; set; }
 
-        // Sayfaya GET isteği yapıldığında çalışan metot.
-        // İsteğe bağlı olarak bir 'code' parametresi (HTTP durum kodu) alabilir.
+        // Sayfaya GET isteÄŸi yapÄ±ldÄ±ÄŸÄ±nda Ã§alÄ±ÅŸan metot.
+        // Ä°steÄŸe baÄŸlÄ± olarak bir 'code' parametresi (HTTP durum kodu) alabilir.
         public void OnGet(string? code)
         {
-            // Mevcut isteğin kimliğini alır.
+            // Mevcut isteÄŸin kimliÄŸini alÄ±r.
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
             ErrorStatusCode = code;
 
-            // Gelen 'code' parametresine göre kullanıcıya gösterilecek hata mesajını belirler.
+            // Gelen 'code' parametresine gÃ¶re kullanÄ±cÄ±ya gÃ¶sterilecek hata mesajÄ±nÄ± belirler.
             switch (code)
             {
-                case "404": // Sayfa bulunamadı hatası.
-                    ErrorMessage = "Ulaşmaya çalıştığınız sayfa bulunamadı. Lütfen adresi kontrol edip tekrar deneyin.";
+                case "404": // Sayfa bulunamadÄ± hatasÄ±.
+                    ErrorMessage = "UlaÅŸmaya Ã§alÄ±ÅŸtÄ±ÄŸÄ±nÄ±z sayfa bulunamadÄ±. LÃ¼tfen adresi kontrol edip tekrar deneyin.";
                     break;
-                default: // Tanımlanmamış veya genel hata durumu.
-                    ErrorMessage = "İsteğiniz işlenirken beklenmedik bir hata oluştu.";
+                default: // TanÄ±mlanmamÄ±ÅŸ veya genel hata durumu.
+                    ErrorMessage = "Ä°steÄŸiniz iÅŸlenirken beklenmedik bir hata oluÅŸtu.";
                     break;
             }
         }
